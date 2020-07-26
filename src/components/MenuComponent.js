@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import {Media} from 'reactstrap';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody,
-    CardTitle } from 'reactstrap';
+    CardTitle, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import { Link } from 'react-router-dom'
 import DishDetail from './DishdetailComponent'
 
 
@@ -21,7 +22,9 @@ import DishDetail from './DishdetailComponent'
 
     function RenderMenuItem({dish,onClick}) {
         return (
-            <Card onClick={() => onClick(dish.id)}>
+            // <Card onClick={() => onClick(dish.id)}>
+            <Card>
+                <Link to={`/menu/${dish.id}`} >
                             <CardImg width="100%" object src={dish.image} alt={dish.name} />
                             
                         <CardImgOverlay>
@@ -29,6 +32,7 @@ import DishDetail from './DishdetailComponent'
                                 {dish.name}
                             </CardTitle>
                         </CardImgOverlay>
+                        </Link>
 
                     </Card>
         );
@@ -46,6 +50,17 @@ import DishDetail from './DishdetailComponent'
 
         return (
             <div className="container">
+                <div className="row">
+                    <Breadcrumb>
+                    <BreadcrumbItem><Link to="/home">Home</Link>
+                    </BreadcrumbItem>
+                    <BreadcrumbItem active>Menu</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>Menu</h3>
+                        <hr />
+                    </div>
+                </div>
                 <div className="row">
                         {menu}
                 </div>

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import {Navbar,NavbarBrand} from 'reactstrap';
 import './App.css';
 import Main from './components/MainComponent';
+import { Route, Switch, NavLink, Link } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
+
 import { render } from '@testing-library/react';
 
 class App extends Component {
@@ -13,9 +15,11 @@ class App extends Component {
   
   render() {
     return (
+      <BrowserRouter>
       <div className="App">
       <Main />
     </div>
+    </BrowserRouter>
     );
   }
 }
