@@ -4,29 +4,23 @@ import { Link } from 'react-router-dom';
 import DishDetail from './DishdetailComponent';
 
 
-function RenderLeaders({ leaders }) {
+function RenderLeaders({ leader }) {
 
-    const leaderslist = leaders.map((leader) => {
-        return (
-            <div key={leader.id} className="col-12 mt-5">
+
+
+    return (
+        <div key={leader.id} className="col-12 mt-5">
             <Media tag="li">
                 <Media left middle>
                     <Media object src={leader.image} alt={leader.name} />
                 </Media>
                 <Media body className="ml-5" >
                     <Media heading>{leader.name}</Media>
-        <p>{leader.designation}</p>
+                    <p>{leader.designation}</p>
                     <p>{leader.description}</p>
                 </Media>
             </Media>
-            </div>
-        );
-    })
-
-    return (
-        <div>
-            {leaderslist}
-            </div>
+        </div>
     );
 }
 
@@ -34,22 +28,12 @@ function RenderLeaders({ leaders }) {
 
 function About(props) {
 
-    // const RenderLeaders = props.leaders.map((leader) => {
-    //     return (
-    //         // <p>Leader {leader.name}</p>
-    //         <div key={leader.id} className="col-12 mt-5">
-    //             <Media tag="li">
-    //                 <Media left middle>
-    //                     <Media object src={leader.image} alt={leader.name} />
-    //                     </Media>
-    //                     <Media body className="ml-5" >
-    //                         <Media heading>{leader.name}</Media>
-    //                     <p>{leader.description}</p>
-    //                 </Media>
-    //             </Media>
-    //         </div>
-    //         );
-    // });
+    const leaders = props.leaders.map((leader) => {
+        return (
+            // <p>Leader {leader.name}</p>
+            <RenderLeaders leader={leader} />
+        );
+    });
 
     return (
         <div className="container">
@@ -107,7 +91,7 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        <RenderLeaders leaders = {props.leaders} />
+                        {leaders}
                     </Media>
                 </div>
             </div>
