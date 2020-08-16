@@ -10,7 +10,7 @@ import Footer from "./FooterComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Contact from "./ContactComponent";
 import { connect } from "react-redux";
-import { addComment, fetchDishes, fetchComments, fetchPromos} from "../redux/ActionCreators";
+import { addComment, postComment, fetchDishes, fetchComments, fetchPromos} from "../redux/ActionCreators";
 import { actions } from 'react-redux-form';
 
 
@@ -24,11 +24,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
   fetchDishes: () => { dispatch(fetchDishes())},
   resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
   fetchComments: () => dispatch(fetchComments()),
-  fetchPromos: () => dispatch(fetchPromos())
+  fetchPromos: () => dispatch(fetchPromos()),
+  postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment))
 });
 
 
@@ -80,7 +80,7 @@ class Main extends Component {
             errMess={this.props.dishes.errMess}
             comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
             commentsErrMess={this.props.comments.errMess}
-            addComment={this.props.addComment}
+            postComment={this.props.postComment}
           />
       );
     };
