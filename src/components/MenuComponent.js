@@ -7,6 +7,7 @@ import {
 import { Link } from 'react-router-dom'
 import DishDetail from './DishdetailComponent';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 
 // renderDish(dish) {
@@ -28,7 +29,7 @@ function RenderMenuItem({ dish, onClick }) {
         // <Card onClick={() => onClick(dish.id)}>
         <Card>
             <Link to={`/menu/${dish.id}`} >
-                <CardImg width="100%" object src={dish.image} alt={dish.name} />
+            <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
 
                 <CardImgOverlay>
                     <CardTitle>
