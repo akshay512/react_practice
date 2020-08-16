@@ -12,7 +12,7 @@ import Contact from "./ContactComponent";
 import { connect } from "react-redux";
 import { addComment, postComment, fetchDishes, fetchComments, fetchPromos} from "../redux/ActionCreators";
 import { actions } from 'react-redux-form';
-
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = (state) => {
   return {
@@ -94,7 +94,9 @@ class Main extends Component {
     return (
       <div>
         <Header />
-        <Switch>
+        <TransitionGroup>
+            <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+        <Switch location={this.props.location}>
           <Route path="/home" component={HomePage} />
           <Route
             exact
@@ -110,6 +112,8 @@ class Main extends Component {
           <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
           <Redirect to="/home" />
         </Switch>
+        </CSSTransition>
+          </TransitionGroup>
 
         {/* <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
         {(this.state.selectedDish!=null)? <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} /> : <div></div>} */}
